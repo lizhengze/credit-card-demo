@@ -21,9 +21,3 @@ const pool = new Pool({
 module.exports = {
   query: (text, params) => pool.query(text, params),
 };
-
-// PGUSER=postgres
-// PGHOST=localhost
-// PGDATABASE=credit_demo
-// PGPASSWORD=Shjkmm@2025
-// PGPORT=5432
