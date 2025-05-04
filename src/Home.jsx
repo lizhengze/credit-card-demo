@@ -11,7 +11,7 @@ function Home() {
 
 useEffect(() => {
   axios
-    .get("http://localhost:4000/api/features")
+    .get(`${process.env.REACT_APP_API_BASE_URL}/api/features`)
     .then((res) => {
       const formattedFeatures = res.data.map((f) => ({
         key: f.key,
@@ -33,7 +33,7 @@ useEffect(() => {
 
   const calculateTotals = async () => {
     try {
-      const response = await fetch("http://localhost:4000/calculate", {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/calculate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ selected })
@@ -64,7 +64,7 @@ useEffect(() => {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/submit", {
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/submit`, {
         email: email,
         selectedFeatures: selected
       });

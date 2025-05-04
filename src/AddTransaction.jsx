@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 export default function AddTransaction() {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
@@ -23,7 +25,7 @@ export default function AddTransaction() {
     }
 
     try {
-      await axios.post("http://localhost:4000/transaction", {
+      await axios.post(`${API_BASE_URL}/transaction`, {
         email,
         amount: parseFloat(amount),
         description,

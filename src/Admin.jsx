@@ -20,7 +20,7 @@ export default function Admin() {
 
   const fetchSubmissions = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/submissions");
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/submissions`);
       setSubmissions(response.data);
     } catch (error) {
       console.error("Failed to fetch submissions:", error);
@@ -29,7 +29,7 @@ export default function Admin() {
 
   const fetchTransactions = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/transactions");
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/transactions`);
       setTransactions(response.data);
     } catch (error) {
       console.error("Failed to fetch transactions:", error);
@@ -42,7 +42,7 @@ export default function Admin() {
         if (!confirmDelete) return; // If user cancels, do nothing
 
         try {
-        await axios.delete(`http://localhost:4000/transactions/${id}`);
+        await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/transactions/${id}`);
         setTransactions((prev) => prev.filter((t) => t.id !== id));
         } catch (error) {
         console.error("Failed to delete transaction:", error);
@@ -53,7 +53,7 @@ export default function Admin() {
     const deleteSubmission = async (id) => {
         if (!window.confirm("Are you sure you want to delete this submission?")) return;
         try {
-          await axios.delete(`http://localhost:4000/submissions/${id}`);
+          await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/submissions/${id}`);
           setSubmissions((prev) => prev.filter((sub) => sub.id !== id));
         } catch (error) {
           console.error("Failed to delete submission:", error);
